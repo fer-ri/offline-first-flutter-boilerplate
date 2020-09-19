@@ -11,6 +11,7 @@ List<GetPage> postRoutes = [
     name: ConstantRoutes.posts,
     page: () => PostScreen(),
     binding: BindingsBuilder(() {
+      Get.lazyPut<PostRepository>(() => PostRepository());
       Get.lazyPut<PostController>(() => PostController());
     }),
   ),

@@ -3,7 +3,6 @@ import 'package:offline_first/core/controllers/base_controller.dart';
 import 'package:offline_first/core/controllers/mixins/form_mixin.dart';
 import 'package:offline_first/core/models/post.dart';
 import 'package:offline_first/core/repositories/post_repository.dart';
-import 'package:uuid/uuid.dart';
 
 class PostFormController extends BaseController with FormMixin {
   final PostRepository _postRepository = Get.find();
@@ -34,6 +33,8 @@ class PostFormController extends BaseController with FormMixin {
       post == null ? await _store() : await _update();
 
       formWasEdited = false;
+
+      Get.back();
     } catch (e) {
       rethrow;
     } finally {
@@ -46,7 +47,7 @@ class PostFormController extends BaseController with FormMixin {
       title: getFieldValue('title'),
     );
 
-    print(post);
+    await _postRepository.upsert(post);
   }
 
   Future<void> _update() async {
@@ -54,6 +55,6 @@ class PostFormController extends BaseController with FormMixin {
       title: getFieldValue('title'),
     );
 
-    print(post);
+    await _postRepository.upsert(post);
   }
 }

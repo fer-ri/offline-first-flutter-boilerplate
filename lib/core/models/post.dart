@@ -24,8 +24,28 @@ class Post {
     );
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'uuid': uuid,
+      'title': title,
+      'publishedAt': publishedAt,
+    };
+  }
+
   @override
   String toString() {
     return 'uuid: $uuid, title: $title, publishedat: $publishedAt';
+  }
+
+  factory Post.fromMap(Map<String, dynamic> map) {
+    if (map == null) {
+      return null;
+    }
+
+    return Post(
+      uuid: map['uuid'],
+      title: map['title'],
+      publishedAt: map['publishedAt'],
+    );
   }
 }
