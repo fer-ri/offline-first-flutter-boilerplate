@@ -22,13 +22,22 @@ class PostScreen extends GetView<PostController> {
                 return Dismissible(
                   key: Key(post.uuid),
                   background: Container(color: Colors.grey[200]),
-                  direction: DismissDirection.endToStart, // right to left
+                  direction: DismissDirection.endToStart,
+                  // right to left
                   onDismissed: (direction) async {
                     await controller.removePost(post);
                   },
                   child: ListTile(
                     title: Text(post.title),
                     subtitle: Text(post.publishedAt),
+                    onTap: () async {
+                      await Get.toNamed(
+                        ConstantRoutes.postForm,
+                        arguments: post,
+                      );
+
+                      controller.refreshPost();
+                    },
                   ),
                 );
               },

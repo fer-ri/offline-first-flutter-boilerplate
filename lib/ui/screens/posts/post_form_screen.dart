@@ -28,6 +28,7 @@ class PostFormScreen extends GetView<PostFormController> {
       autovalidate: controller.autoValidate,
       onChanged: controller.formOnChanged,
       onWillPop: controller.formOnWillPop,
+      initialValue: controller.post?.toMap(),
       child: Column(
         children: [
           FormBuilderTextField(
