@@ -54,7 +54,13 @@ class PostFormScreen extends GetView<PostFormController> {
         builder: (_) {
           VoidCallback onPressed = controller.isBusy
               ? null
-              : () async => await controller.submit();
+              : () async {
+                  try {
+                    await controller.submit();
+                  } catch (e) {
+                    Get.snackbar('Error', e.toString());
+                  }
+                };
 
           return RaisedButton(
             elevation: 0,
