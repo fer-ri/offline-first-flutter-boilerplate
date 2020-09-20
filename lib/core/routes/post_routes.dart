@@ -22,5 +22,6 @@ List<GetPage> postRoutes = [
       Get.lazyPut<PostRepository>(() => PostRepository());
       Get.lazyPut<PostFormController>(() => PostFormController());
     }),
+    fullscreenDialog: true,
   ),
 ];

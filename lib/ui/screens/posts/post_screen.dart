@@ -29,7 +29,8 @@ class PostScreen extends GetView<PostController> {
                   },
                   child: ListTile(
                     title: Text(post.title),
-                    subtitle: Text(post.publishedAt),
+                    subtitle: Text(post.uuid),
+                    trailing: Icon(Icons.chevron_right),
                     onTap: () async {
                       await Get.toNamed(
                         ConstantRoutes.postForm,

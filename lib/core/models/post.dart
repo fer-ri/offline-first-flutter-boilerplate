@@ -1,17 +1,25 @@
 import 'package:flutter/foundation.dart';
-import 'package:uuid/uuid.dart';
+import 'package:offline_first/core/models/base_model.dart';
 
-class Post {
-  final String uuid;
+class Post extends BaseModel {
   final String title;
   final String publishedAt;
 
   Post({
-    uuid,
+    String uuid,
     @required this.title,
-    publishedAt,
-  })  : uuid = uuid ?? Uuid().v4(),
-        publishedAt = publishedAt ?? DateTime.now().toUtc().toString();
+    String publishedAt,
+  })  : publishedAt = publishedAt ?? DateTime.now().toUtc().toString(),
+        super(uuid);
+
+  @override
+  Map<String, dynamic> toMap() {
+    return {
+      'uuid': uuid,
+      'title': title,
+      'publishedAt': publishedAt,
+    };
+  }
 
   Post copyWith({
     String title,
@@ -22,14 +30,6 @@ class Post {
       title: title ?? this.title,
       publishedAt: publishedAt ?? this.publishedAt,
     );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'uuid': uuid,
-      'title': title,
-      'publishedAt': publishedAt,
-    };
   }
 
   @override

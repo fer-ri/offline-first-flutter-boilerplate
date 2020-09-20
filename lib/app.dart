@@ -7,9 +7,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       getPages: [
+        ...homeRoutes,
         ...postRoutes,
       ],
-      initialRoute: ConstantRoutes.posts,
+      initialRoute: ConstantRoutes.root,
     );
   }
 }
