@@ -58,7 +58,13 @@ class PostFormScreen extends GetView<PostFormController> {
                   try {
                     await controller.submit();
                   } catch (e) {
-                    Get.snackbar('Error', e.toString());
+                    Get.snackbar(
+                      'Error',
+                      e.toString(),
+                      snackPosition: SnackPosition.BOTTOM,
+                      colorText: Colors.white,
+                      backgroundColor: Colors.black.withOpacity(0.6),
+                    );
                   }
                 };
 

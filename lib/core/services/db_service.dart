@@ -17,6 +17,18 @@ class DbService {
 
   List<String> get _init => [
     '''
+      CREATE TABLE queues (
+        uuid PRIMARY KEY,
+        docUuid TEXT,
+        docTable TEXT,
+        operation TEXT,
+        data TEXT,
+        isLocal INT,
+        createdAt TEXT,
+        syncedAt TEXT
+      )
+    ''',
+    '''
       CREATE TABLE posts (
         uuid PRIMARY KEY,
         title TEXT,
@@ -25,18 +37,10 @@ class DbService {
     ''',
   ];
 
-  List<String> get _migrations => [
-    '''
-      INSERT INTO posts (uuid, title, publishedat)
-      VALUES
-        ('042699ac-a3e2-4bff-bac5-6adc05c0aa20', 'Post #1', '2020-09-19 13:54:31.076Z')
-    ''',
-  ];
+  List<String> get _migrations => [];
 
   Future<Database> _open() async {
-    final databasesPath = await getDatabasesPath();
-
-    final path = join(databasesPath, 'offline_first.db');
+    final String path = await DbService.path;
 
     return await openDatabaseWithMigration(
       path,
@@ -45,5 +49,13 @@ class DbService {
         migrationScripts: _migrations,
       ),
     );
+  }
+
+  static Future<String> get path async {
+    final databasesPath = await getDatabasesPath();
+
+    final path = join(databasesPath, 'offline_first.db');
+
+    return path;
   }
 }

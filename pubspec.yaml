@@ -37,6 +37,9 @@ dependencies:
   sqflite_migration: ^0.2.0
   data_connection_checker: ^0.3.4
   flutter_form_builder: ^3.13.5
+  workmanager: ^0.2.3
+  dio: ^3.0.10
+  device_info: '>=0.4.2+8 <2.0.0'
 
 dev_dependencies:
   flutter_test:

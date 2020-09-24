@@ -9,6 +9,7 @@ class App extends StatelessWidget {
       getPages: [
         ...homeRoutes,
         ...postRoutes,
+        ...queueRoutes,
       ],
       initialRoute: ConstantRoutes.root,
     );
