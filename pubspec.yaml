@@ -40,7 +40,7 @@ dependencies:
   workmanager: ^0.2.3
   dio: ^3.0.10
   device_info: '>=0.4.2+8 <2.0.0'
-  firebase_messaging: '7.0.3'
+  firebase_messaging: ^7.0.3
 
 dev_dependencies:
   flutter_test:

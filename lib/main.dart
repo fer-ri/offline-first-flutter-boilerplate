@@ -79,17 +79,17 @@ Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) async {
     // Handle data message
     final dynamic data = message['data'];
 
-    print(data);
+    print('myBackgroundMessageHandler data: $data');
   }
 
   if (message.containsKey('notification')) {
     // Handle notification message
     final dynamic notification = message['notification'];
 
-    print(notification);
+    print('myBackgroundMessageHandler notification: $notification');
   }
 
-  // Or do other work.
+  print('myBackgroundMessageHandler end');
 }
 
 void main() async {
@@ -127,6 +127,8 @@ void main() async {
       print("onResume: $message");
     },
   );
+
+  _firebaseMessaging.subscribeToTopic('android');
 
   return runApp(App());
 }
