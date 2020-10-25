@@ -23,7 +23,8 @@ class DbService {
         docTable TEXT,
         operation TEXT,
         data TEXT,
-        isLocal INT,
+        deviceUuid STRING,
+        deviceModel STRING,
         createdAt TEXT,
         syncedAt TEXT
       )

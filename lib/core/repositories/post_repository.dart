@@ -1,7 +1,7 @@
 import 'package:offline_first/core/models/post.dart';
 import 'package:offline_first/core/repositories/base_repository.dart';
 
-class PostRepository extends BaseRepository<Post> {
+class PostRepository extends BaseRepository {
   String get table => 'posts';
 
   Future<List<Post>> all() async {

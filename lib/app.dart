@@ -11,7 +11,7 @@ class App extends StatelessWidget {
         ...postRoutes,
         ...queueRoutes,
       ],
-      initialRoute: ConstantRoutes.root,
+      initialRoute: Routes.root,
     );
   }
 }

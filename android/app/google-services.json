@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "998475673677",
+    "firebase_url": "https://offline-first-demo-ca8ae.firebaseio.com",
+    "project_id": "offline-first-demo-ca8ae",
+    "storage_bucket": "offline-first-demo-ca8ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998475673677:android:cd4455586e6395bf172c04",
+        "android_client_info": {
+          "package_name": "com.catatantekno.offline_first"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998475673677-dpuj4q5isgq50unm4tk3jk9k8al2durq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAJd2u7dlqN7oC3VNe66sbrmwTJT0p2QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998475673677-dpuj4q5isgq50unm4tk3jk9k8al2durq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,11 +17,12 @@ class QueueScreen extends GetView<QueueController> {
               Queue queue = controller.queues.elementAt(index);
 
               return ListTile(
-                title: Text('${queue.operation} / ${queue.docTable}'),
+                title: Text('${queue.operation} / ${queue.docTable} / ${queue.docUuid}'),
                 subtitle: Text('${queue.createdAt} / ${queue.syncedAt}'),
                 trailing: queue.syncedAt == null
                     ? SizedBox.shrink()
                     : Icon(Icons.check),
+                isThreeLine: true,
               );
             },
             itemCount: controller.queues.length,

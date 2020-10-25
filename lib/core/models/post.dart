@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:offline_first/core/models/base_model.dart';
+import 'package:sqflite/sqflite.dart';
 
 class Post extends BaseModel {
   final String title;
@@ -7,10 +9,21 @@ class Post extends BaseModel {
 
   Post({
     String uuid,
-    @required this.title,
+    this.title,
     String publishedAt,
   })  : publishedAt = publishedAt ?? DateTime.now().toUtc().toString(),
         super(uuid);
+
+  @override
+  String get table => 'posts';
+
+  Database get db => Get.find<Database>();
+
+  Future<List<Post>> get() async {
+    List<Map<String, dynamic>> lists = await db.query(table);
+
+    return lists.map((e) => Post.fromMap(e)).toList();
+  }
 
   @override
   Map<String, dynamic> toMap() {

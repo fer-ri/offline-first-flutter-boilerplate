@@ -3,6 +3,7 @@ import 'package:offline_first/core/controllers/base_controller.dart';
 import 'package:offline_first/core/controllers/mixins/form_mixin.dart';
 import 'package:offline_first/core/models/post.dart';
 import 'package:offline_first/core/repositories/post_repository.dart';
+import 'package:offline_first/core/services/services.dart';
 
 class PostFormController extends BaseController with FormMixin {
   final PostRepository _postRepository = Get.find();
@@ -48,6 +49,8 @@ class PostFormController extends BaseController with FormMixin {
     );
 
     await _postRepository.upsert(post);
+
+    await sync.pushQueue(SyncOperation.INSERT, post);
   }
 
   Future<void> _update() async {
@@ -56,5 +59,7 @@ class PostFormController extends BaseController with FormMixin {
     );
 
     await _postRepository.upsert(post);
+
+    await sync.pushQueue(SyncOperation.UPDATE, post);
   }
 }

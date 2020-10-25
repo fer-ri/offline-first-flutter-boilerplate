@@ -5,7 +5,8 @@ class Queue extends BaseModel {
   final String docTable;
   final String operation;
   final String data;
-  final bool isLocal;
+  final String deviceUuid;
+  final String deviceModel;
   final String createdAt;
   final String syncedAt;
 
@@ -15,11 +16,15 @@ class Queue extends BaseModel {
     this.docTable,
     this.operation,
     this.data,
-    this.isLocal,
+    this.deviceUuid,
+    this.deviceModel,
     createdAt,
     this.syncedAt,
   })  : createdAt = createdAt ?? BaseModel.now,
         super(uuid);
+
+  @override
+  String get table => 'queues';
 
   @override
   Map<String, dynamic> toMap() {
@@ -29,7 +34,8 @@ class Queue extends BaseModel {
       'docTable': docTable,
       'operation': operation,
       'data': data,
-      'isLocal': isLocal ? 1 : 0,
+      'deviceUuid': deviceUuid,
+      'deviceModel': deviceModel,
       'createdAt': createdAt,
       'syncedAt': syncedAt,
     };
@@ -46,7 +52,8 @@ class Queue extends BaseModel {
       docTable: map['docTable'],
       operation: map['operation'],
       data: map['data'],
-      isLocal: map['isLocal'] == 1,
+      deviceUuid: map['deviceUuid'],
+      deviceModel: map['deviceModel'],
       createdAt: map['createdAt'],
       syncedAt: map['syncedAt'],
     );
@@ -54,7 +61,8 @@ class Queue extends BaseModel {
 
   @override
   String toString() {
-    return 'uuid: $uuid, docUuid: $docUuid, docTable: $docTable, isLocal: $isLocal, '
+    return 'uuid: $uuid, docUuid: $docUuid, docTable: $docTable, '
+        'deviceUuid: $deviceUuid, deviceModel: $deviceModel'
         'operation: $operation, syncedAt: $syncedAt';
   }
 }

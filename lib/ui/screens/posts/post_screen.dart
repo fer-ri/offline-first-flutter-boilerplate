@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:offline_first/core/controllers/posts/post_controller.dart';
 import 'package:offline_first/core/models/post.dart';
-import 'package:offline_first/core/routes/constant_routes.dart';
+import 'package:offline_first/core/routes/constants.dart';
 
 class PostScreen extends GetView<PostController> {
   @override
@@ -33,7 +33,7 @@ class PostScreen extends GetView<PostController> {
                     trailing: Icon(Icons.chevron_right),
                     onTap: () async {
                       await Get.toNamed(
-                        ConstantRoutes.postForm,
+                        Routes.postForm,
                         arguments: post,
                       );
 
@@ -50,7 +50,7 @@ class PostScreen extends GetView<PostController> {
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         onPressed: () async {
-          await Get.toNamed(ConstantRoutes.postForm);
+          await Get.toNamed(Routes.postForm);
 
           controller.refreshPost();
         },
