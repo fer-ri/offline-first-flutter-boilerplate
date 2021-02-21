@@ -13,6 +13,6 @@ abstract class BaseController extends GetxController {
   void setBusy([bool value = true, Object object]) {
     object ??= this;
 
-    _busy.add(object.hashCode, value);
+    _busy.assign(object.hashCode, value);
   }
 }

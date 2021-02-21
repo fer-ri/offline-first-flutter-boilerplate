@@ -25,17 +25,17 @@ class PostFormScreen extends GetView<PostFormController> {
   Widget _buildForm() {
     return FormBuilder(
       key: controller.formKey,
-      autovalidate: controller.autoValidate,
+      autovalidateMode: controller.autoValidate,
       onChanged: controller.formOnChanged,
       onWillPop: controller.formOnWillPop,
       initialValue: controller.post?.toMap(),
       child: Column(
         children: [
           FormBuilderTextField(
-            attribute: 'title',
-            validators: [
-              FormBuilderValidators.required(),
-            ],
+            name: 'title',
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(Get.context),
+            ]),
             decoration: InputDecoration(
               labelText: 'Title',
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -64,6 +64,7 @@ class PostFormScreen extends GetView<PostFormController> {
                       snackPosition: SnackPosition.BOTTOM,
                       colorText: Colors.white,
                       backgroundColor: Colors.black.withOpacity(0.6),
+                      margin: EdgeInsets.all(16),
                     );
                   }
                 };

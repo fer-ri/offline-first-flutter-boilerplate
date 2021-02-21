@@ -109,6 +109,28 @@ class HomeScreen extends GetView<HomeController> {
               );
             },
           ),
+          ListTile(
+            title: Text('Delete/Reset Database'),
+            onTap: () async {
+              await controller.resetDb();
+
+              Get.snackbar(
+                'Success',
+                'Database deleted',
+                snackPosition: SnackPosition.BOTTOM,
+                colorText: Colors.white,
+                backgroundColor: Colors.black.withOpacity(0.6),
+                margin: EdgeInsets.all(16),
+              );
+            },
+          ),
+          ListTile(
+            title: GetX(
+              builder: (_) {
+                return SelectableText(controller.token);
+              },
+            ),
+          ),
         ],
       ),
     );

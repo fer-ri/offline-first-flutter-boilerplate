@@ -6,11 +6,7 @@ class DbService {
   static Database _instance;
 
   Future<Database> get instance async {
-    if (_instance != null) {
-      return _instance;
-    }
-
-    _instance = await _open();
+    _instance ??= await _open();
 
     return _instance;
   }
@@ -58,5 +54,10 @@ class DbService {
     final path = join(databasesPath, 'offline_first.db');
 
     return path;
+  }
+
+  static Future<void> delete() async {
+    await deleteDatabase(await DbService.path);
+    await DbService().instance;
   }
 }

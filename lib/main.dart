@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:offline_first/app.dart';
 import 'package:offline_first/core/repositories/repositories.dart';
+import 'package:offline_first/core/routes/routes.dart';
 import 'package:offline_first/core/services/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:workmanager/workmanager.dart';
@@ -43,7 +44,7 @@ Future<void> initDependencies() async {
 
     (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
 
-    dio.options.baseUrl = 'http://192.168.100.9:4000/api';
+    dio.options.baseUrl = 'http://192.168.100.9:7000/api';
 
     dio.options.headers = {
       Headers.acceptHeader: 'application/json',
@@ -118,6 +119,13 @@ void main() async {
   _firebaseMessaging.configure(
     onMessage: (Map<String, dynamic> message) async {
       print("onMessage: $message");
+
+      if (message['data']['action'] == 'sync') {
+        print('sync pull');
+
+        await Get.find<SyncService>().push();
+        await Get.find<SyncService>().pull();
+      }
     },
     onBackgroundMessage: myBackgroundMessageHandler,
     onLaunch: (Map<String, dynamic> message) async {
@@ -129,6 +137,12 @@ void main() async {
   );
 
   _firebaseMessaging.subscribeToTopic('android');
+
+  _firebaseMessaging.getToken().then((String token) {
+    print(token);
+  });
+
+  await Get.find<SyncService>().registerDevice();
 
   return runApp(App());
 }

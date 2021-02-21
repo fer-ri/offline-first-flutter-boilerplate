@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
@@ -12,11 +13,11 @@ mixin FormMixin {
 
   set formWasEdited(value) => _formWasEdited.value = value;
 
-  final RxBool _autoValidate = RxBool(false);
+  final Rx<AutovalidateMode> _autoValidate = Rx<AutovalidateMode>();
 
-  bool get autoValidate => _autoValidate.value;
+  AutovalidateMode get autoValidate => _autoValidate.value;
 
-  void formOnChanged(Map<String, dynamic> map) {
+  void formOnChanged() {
     formWasEdited = true;
   }
 
@@ -33,13 +34,11 @@ mixin FormMixin {
   }
 
   bool validateForm() {
-    if (!formKey.currentState.validate()) {
-      _autoValidate.value = true;
+    if (!formKey.currentState.saveAndValidate()) {
+      _autoValidate.value = AutovalidateMode.always;
 
       return false;
     }
-
-    formKey.currentState.save();
 
     return true;
   }
@@ -49,6 +48,6 @@ mixin FormMixin {
   }
 
   dynamic getFieldValue(dynamic field) {
-    return formKey.currentState.fields[field]?.currentState?.value;
+    return formKey.currentState.value[field];
   }
 }
